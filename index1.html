@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+
+  <div id="app">
+    <!-- v-once uses the initial value and does not change if the value changes. -->
+    <h1 v-once>{{ title }}</h1>
+    <p>{{ sayHello() }} -
+      <!-- v-bind is a directive used on html elements -->
+      <a v-bind:href="link"> Google </a>
+      <hr>
+      <!-- Use v-html carefully because it exposes you to cross script attacks -->
+      <p v-html="finishedLink"></p>
+    </p>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        title: "Hello World!",
+        link: "http://google.com",
+        finishedLink: "<a href='http://google.com'> Google </a>"
+      },
+      methods: {
+        sayHello: function () {
+          this.title = "Hello"
+          return this.title
+        }
+      }
+    })
+  </script>
